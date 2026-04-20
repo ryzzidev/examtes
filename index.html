@@ -4,25 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   
-  <!-- PWA Meta Tags -->
+  <!-- PWA - Semua dalam 1 file -->
   <meta name="theme-color" content="#1e40af" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="Sumatif SAS" />
+  
+  <!-- Manifest Inline (Data URL) -->
+  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiU3VtYXRpZiBTQVMgU01QTjEzIEtlbmRhcmkiLCJzaG9ydF9uYW1lIjoiU3VtYXRpZiBTQVMiLCJkZXNjcmlwdGlvbiI6IlN1bWF0aWYgQWtoaXIgU2VtZXN0ZXIgR2FuamlsIiwic3RhcnRfdXJsIjoiLi8iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjZmZmZmZmIiwidGhlbWVfY29sb3IiOiIjMWU0MGFmIiwib3JpZW50YXRpb24iOiJwb3J0cmFpdCIsImljb25zIjpbeyJzcmMiOiJodHRwczovL2lpbGkuaW8vZnpkMU1hMi5wbmciLCJzaXplcyI6IjE5MngxOTIiLCJ0eXBlIjoiaW1hZ2UvcG5nIn0seyJzcmMiOiJodHRwczovL2lpbGkuaW8vZnpkMU1hMi5wbmciLCJzaXplcyI6IjUxMng1MTIiLCJ0eXBlIjoiaW1hZ2UvcG5nIn1dfQ==" />
 
   <title>Sumatif Akhir Semester Ganjil</title>
   
-  <!-- Manifest -->
-  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiU3VtYXRpZiBBS1MgU01QTjEzIEtlbmRhcmkiLCJzaG9ydF9uYW1lIjoiU3VtYXRpZiBTQVMiLCJkZXNjcmlwdGlvbiI6IlN1bWF0aWYgQWtoaXIgU2VtZXN0ZXIgR2FuamlsIiwic3RhcnRfdXJsIjoiLi8iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjZmZmZmZmIiwidGhlbWVfY29sb3IiOiIjMWU0MGFmIiwiaWNvbnMiOlt7InNyYyI6Imh0dHBzOi8vaWlsaS5pby9memQxTWEyLnBuZyIsInNpemVzIjoiMTkyeDE5MiIsInR5cGUiOiJpbWFnZS9wbmcifSx7InNyYyI6Imh0dHBzOi8vaWlsaS5pby9memQxTWEyLnBuZyIsInNpemVzIjoiNTEyeDUxMiIsInR5cGUiOiJpbWFnZS9wbmcifV19fQ==" />
-
-  <!-- Font Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --primary: #1e40af;
-      --primary-light: #3b82f6;
-      --text: #1e293b;
       --green: #008e8a;
     }
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -34,45 +30,36 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      padding: 40px 20px 20px;
-      color: var(--text);
-    }
-
-    /* Layar Utama / Home Screen */
-    .home-header {
-      text-align: center;
-      margin-bottom: 40px;
+      padding: 40px 20px 30px;
+      color: #1e293b;
     }
 
     .logo {
-      width: 140px;
+      width: 145px;
       margin-bottom: 20px;
       border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
     }
 
     .main-title {
-      font-size: 20px;
+      font-size: 21px;
       font-weight: 600;
       color: var(--primary);
-      margin-bottom: 5px;
+      text-align: center;
+      margin-bottom: 6px;
     }
 
     .year-title {
       font-size: 17px;
       font-weight: 400;
       color: #475569;
-    }
-
-    .input-group {
-      width: 90%;
-      max-width: 380px;
-      margin: 40px 0 30px;
+      text-align: center;
+      margin-bottom: 45px;
     }
 
     .input-token {
-      width: 100%;
+      width: 90%;
+      max-width: 380px;
       padding: 16px 20px;
       text-transform: uppercase;
       font-size: 18px;
@@ -81,19 +68,10 @@
       border: 3px solid #00b4ae;
       border-radius: 25px;
       outline: none;
-      transition: all 0.3s;
+      margin-bottom: 30px;
     }
     .input-token:focus {
-      border-color: #00b4ae;
       box-shadow: 0 0 0 6px rgba(0, 180, 174, 0.25);
-    }
-
-    .info {
-      font-size: 15px;
-      color: #64748b;
-      text-align: center;
-      line-height: 1.6;
-      margin-bottom: 50px;
     }
 
     .btn {
@@ -107,17 +85,26 @@
       border: none;
       border-radius: 50px;
       cursor: pointer;
-      transition: all 0.3s;
-      margin-top: 20px;
-      box-shadow: 0 8px 20px rgba(0, 142, 138, 0.3);
+      box-shadow: 0 8px 20px rgba(0, 142, 138, 0.35);
     }
 
-    .btn:hover {
-      background: #006d68;
-      transform: translateY(-4px);
+    .info {
+      font-size: 15px;
+      color: #64748b;
+      text-align: center;
+      line-height: 1.6;
+      margin: 30px 0 40px;
     }
 
-    /* Loading & Modal sama seperti sebelumnya */
+    .foot {
+      font-size: 12px;
+      color: #64748b;
+      text-align: center;
+      margin-top: auto;
+      padding-top: 30px;
+    }
+
+    /* Loading */
     #loading {
       position: fixed; inset: 0; background: white;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -129,46 +116,21 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    .modal { 
-      display: none; 
-      position: fixed; inset: 0; 
-      background: rgba(0,0,0,0.65); 
-      backdrop-filter: blur(10px);
-      align-items: center; justify-content: center; 
-      z-index: 9999; 
+    /* Modal */
+    .modal {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);
+      align-items: center; justify-content: center; z-index: 9999;
     }
     .modal-content {
-      background: white; 
-      padding: 40px 30px; 
-      border-radius: 24px; 
-      text-align: center;
-      max-width: 340px; width: 90%; 
-      box-shadow: 0 25px 50px rgba(0,0,0,0.25); 
+      background: white; padding: 35px 25px; border-radius: 24px;
+      text-align: center; max-width: 340px; width: 90%;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
       border: 4px solid #ef4444;
     }
-    .modal h2 { 
-      color: #dc2626; 
-      font-size: 26px; 
-      font-weight: 700; 
-      margin-bottom: 15px; 
-    }
-    .close-btn { 
-      margin-top: 25px;
-      padding: 13px 40px; 
-      background: #ef4444; 
-      color: white; 
-      border: none;
-      border-radius: 50px; 
-      font-weight: 600; 
-      cursor: pointer; 
-      font-size: 16px;
-    }
-    .foot {
-      font-size: 12.5px;
-      color: #64748b;
-      text-align: center;
-      margin-top: auto;
-      padding-top: 40px;
+    .close-btn {
+      margin-top: 20px; padding: 13px 40px; background: #ef4444;
+      color: white; border: none; border-radius: 50px; font-size: 16px; font-weight: 600;
     }
   </style>
 </head>
@@ -180,26 +142,21 @@
     <div class="spinner"></div>
   </div>
 
-  <!-- Layar Utama -->
-  <div class="home-header">
-    <img src="https://iili.io/fzd1Ma2.png" alt="Logo SMPN 13 Kendari" class="logo">
-    <div class="main-title">Sumatif Akhir Semester Ganjil</div>
-    <div class="year-title">Tahun Pelajaran 2025/2026</div>
-  </div>
+  <img src="https://iili.io/fzd1Ma2.png" alt="Logo" class="logo">
+  <div class="main-title">Sumatif Akhir Semester Ganjil</div>
+  <div class="year-title">Tahun Pelajaran 2025/2026</div>
 
-  <div class="input-group">
-    <input type="text" id="kodeInput" class="input-token" placeholder="MASUKKAN TOKEN SOAL" autocomplete="off" maxlength="50">
-  </div>
+  <input type="text" id="kodeInput" class="input-token" placeholder="MASUKKAN TOKEN SOAL" maxlength="50" autocomplete="off">
 
   <div class="info">
-    Masukkan Token Soal yang diberikan oleh<br><strong>Panitia atau Pengawas</strong>
+    Silahkan masukkan Token Soal sesuai arahan<br>dari Panitia / Pengawas
   </div>
 
-  <button class="btn" onclick="verifikasiKode()">CEK TOKEN &amp; MULAI</button>
+  <button class="btn" onclick="verifikasiKode()">CEK TOKEN & MULAI</button>
 
   <div class="foot">
     S-Code by : Baso Asril<br>
-    <small>PWA Ready • Installable</small>
+    <small>PWA Ready - Bisa di Install</small>
   </div>
 
   <!-- Modal Error -->
@@ -221,7 +178,7 @@
         daftarKode = await response.json();
       } catch (err) {
         console.error(err);
-        alert('Gagal memuat database token. Periksa koneksi internet Anda.');
+        alert('Gagal memuat database token. Cek koneksi internet.');
       } finally {
         document.getElementById('loading').style.display = 'none';
         document.getElementById('kodeInput').focus();
@@ -232,20 +189,16 @@
 
     function verifikasiKode() {
       const input = document.getElementById('kodeInput').value.trim().toUpperCase();
-
       if (!input) {
         document.getElementById('errorModal').style.display = 'flex';
         return;
       }
 
       const url = daftarKode[input];
-
       if (url) {
-        document.body.style.transition = 'opacity 0.5s';
+        document.body.style.transition = 'opacity 0.6s';
         document.body.style.opacity = '0';
-        setTimeout(() => {
-          window.location.href = url;
-        }, 500);
+        setTimeout(() => window.location.href = url, 600);
       } else {
         document.getElementById('errorModal').style.display = 'flex';
       }
@@ -254,25 +207,29 @@
     function closeModal() {
       document.getElementById('errorModal').style.display = 'none';
       document.getElementById('kodeInput').focus();
-      document.getElementById('kodeInput').select();
     }
 
-    // Service Worker untuk PWA
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('data:application/javascript, self.addEventListener("install", () => { self.skipWaiting(); }); self.addEventListener("activate", () => { self.clients.claim(); });')
-        .catch(err => console.log('SW simplified version'));
-    }
-
-    // Enter key
+    // Enter key support
     document.getElementById('kodeInput').addEventListener('keypress', (e) => {
       if (e.key === 'Enter') verifikasiKode();
     });
 
-    // Install prompt (opsional)
+    // Service Worker Inline (Penting untuk Install)
+    if ('serviceWorker' in navigator) {
+      const swCode = `
+        self.addEventListener('install', () => self.skipWaiting());
+        self.addEventListener('activate', () => self.clients.claim());
+      `;
+      const blob = new Blob([swCode], { type: 'application/javascript' });
+      const swUrl = URL.createObjectURL(blob);
+      navigator.serviceWorker.register(swUrl).catch(console.log);
+    }
+
+    // Install Prompt
     let deferredPrompt;
     window.addEventListener('beforeinstallprompt', (e) => {
       deferredPrompt = e;
-      console.log('App bisa di-install');
+      console.log('%cAplikasi siap di-install', 'color:green;font-weight:bold');
     });
   </script>
 </body>
