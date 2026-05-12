@@ -3,15 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  
-  <!-- PWA - Semua dalam 1 file -->
-  <meta name="theme-color" content="#1e40af" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  
-  <!-- Manifest Inline (Data URL) -->
-  <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiU3VtYXRpZiBTQVMgU01QTjEzIEtlbmRhcmkiLCJzaG9ydF9uYW1lIjoiU3VtYXRpZiBTQVMiLCJkZXNjcmlwdGlvbiI6IlN1bWF0aWYgQWtoaXIgU2VtZXN0ZXIgR2FuamlsIiwic3RhcnRfdXJsIjoiLi8iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjZmZmZmZmIiwidGhlbWVfY29sb3IiOiIjMWU0MGFmIiwib3JpZW50YXRpb24iOiJwb3J0cmFpdCIsImljb25zIjpbeyJzcmMiOiJodHRwczovL2lpbGkuaW8vZnpkMU1hMi5wbmciLCJzaXplcyI6IjE5MngxOTIiLCJ0eXBlIjoiaW1hZ2UvcG5nIn0seyJzcmMiOiJodHRwczovL2lpbGkuaW8vZnpkMU1hMi5wbmciLCJzaXplcyI6IjUxMng1MTIiLCJ0eXBlIjoiaW1hZ2UvcG5nIn1dfQ==" />
-
   <title>Sumatif Akhir Semester Ganjil</title>
   
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -19,73 +10,66 @@
   <style>
     :root {
       --primary: #1e40af;
+      --primary-light: #3b82f6;
+      --text: #1e293b;
       --green: #008e8a;
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+      background: white;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 40px 20px 30px;
-      color: #1e293b;
+      justify-content: flex-start;
+      padding: 50px 20px 20px;
+      color: var(--text);
     }
 
     .logo {
-      width: 145px;
-      margin-bottom: 20px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+      width: 130px;
+      margin-bottom: 35px;
     }
 
     .main-title {
-      font-size: 21px;
-      font-weight: 600;
-      color: var(--primary);
+      font-size: 18px;
+      font-weight: 300;
       text-align: center;
-      margin-bottom: 6px;
+      line-height: 1.3;
+      margin-bottom: 8px;
     }
 
     .year-title {
-      font-size: 17px;
-      font-weight: 400;
-      color: #475569;
+      font-size: 18px;
+      font-weight: 300;
       text-align: center;
-      margin-bottom: 45px;
+      line-height: 1.3;
+      margin-bottom: 40px;
+    }
+
+    .input-group {
+      width: 90%;
+      max-width: 380px;
+      margin-bottom: 30px;
     }
 
     .input-token {
-      width: 90%;
-      max-width: 380px;
-      padding: 16px 20px;
+      width: 100%;
+      padding: 15px 20px;
       text-transform: uppercase;
       font-size: 18px;
       font-weight: 700;
       text-align: center;
-      border: 3px solid #00b4ae;
+      border: 2px solid #00b4ae;
       border-radius: 25px;
       outline: none;
-      margin-bottom: 30px;
+      transition: all 0.3s;
     }
     .input-token:focus {
-      box-shadow: 0 0 0 6px rgba(0, 180, 174, 0.25);
-    }
-
-    .btn {
-      width: 75%;
-      max-width: 380px;
-      padding: 16px;
-      background: var(--green);
-      color: white;
-      font-size: 17px;
-      font-weight: 600;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 8px 20px rgba(0, 142, 138, 0.35);
+      border-color: #00b4ae;
+      box-shadow: 0 0 0 5px rgba(0, 180, 174, 0.2);
     }
 
     .info {
@@ -93,15 +77,36 @@
       color: #64748b;
       text-align: center;
       line-height: 1.6;
-      margin: 30px 0 40px;
+      margin-bottom: 50px;
     }
 
     .foot {
       font-size: 12px;
       color: #64748b;
       text-align: center;
-      margin-top: auto;
-      padding-top: 30px;
+      line-height: 1.6;
+      margin-top: 20px;
+    }
+
+    .btn {
+      width: 70%;
+      max-width: 380px;
+      padding: 16px;
+      background: var(--green);
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 77px; 
+    }
+
+    .btn:hover {
+      background: #006d68;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 25px rgba(0, 141, 138, 0.35);
     }
 
     /* Loading */
@@ -111,67 +116,110 @@
       z-index: 9999; font-size: 19px; font-weight: 600; color: var(--primary);
     }
     .spinner {
-      width: 55px; height: 55px; border: 6px solid #e2e8f0; border-top: 6px solid var(--primary);
+      width: 50px; height: 50px; border: 5px solid #e2e8f0; border-top: 5px solid var(--primary);
       border-radius: 50%; animation: spin 1s linear infinite; margin-top: 20px;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* Modal */
-    .modal {
-      display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);
-      align-items: center; justify-content: center; z-index: 9999;
+    /* Modal Error */
+    .modal { 
+      display: none; 
+      position: fixed; inset: 0; 
+      background: rgba(0,0,0,0.6); 
+      backdrop-filter: blur(8px);
+      align-items: center; justify-content: center; 
+      z-index: 9999; 
     }
     .modal-content {
-      background: white; padding: 35px 25px; border-radius: 24px;
-      text-align: center; max-width: 340px; width: 90%;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-      border: 4px solid #ef4444;
+      background: white; 
+      padding: 40px 30px; 
+      border-radius: 20px; 
+      text-align: center;
+      max-width: 340px; width: 90%; 
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2); 
+      border: 3px solid #ef4444;
     }
-    .close-btn {
-      margin-top: 20px; padding: 13px 40px; background: #ef4444;
-      color: white; border: none; border-radius: 50px; font-size: 16px; font-weight: 600;
+    .modal h2 { 
+      color: #dc2626; 
+      font-size: 26px; 
+      font-weight: 700; 
+      margin-bottom: 15px; 
     }
+    .close-btn { 
+      margin-top: 20px;
+      padding: 12px 34px; 
+      background: #ef4444; 
+      color: white; 
+      border: none;
+      border-radius: 50px; 
+      font-weight: 600; 
+      cursor: pointer; 
+    }
+    .close-btn:hover { background: #dc2626; }
   </style>
 </head>
 <body>
 
-  <!-- Loading -->
   <div id="loading">
-    <div>Loading Database Token...</div>
+    <div>Loading Token Database...</div>
     <div class="spinner"></div>
   </div>
 
-  <img src="https://iili.io/fzd1Ma2.png" alt="Logo" class="logo">
-  <div class="main-title">Sumatif Akhir Semester Ganjil</div>
+  <img src="https://iili.io/fzd1Ma2.png" alt="Logo SMPN 13 Kendari" class="logo">
+
+  <div class="main-title">Asesmen Akhir Berbasis Digital</div>
   <div class="year-title">Tahun Pelajaran 2025/2026</div>
 
-  <input type="text" id="kodeInput" class="input-token" placeholder="MASUKKAN TOKEN SOAL" maxlength="50" autocomplete="off">
+  <div class="input-group">
+    <input type="text" id="kodeInput" class="input-token" placeholder="INPUT TOKEN SOAL" autocomplete="off" maxlength="50">
+  </div>
 
   <div class="info">
-    Silahkan masukkan Token Soal sesuai arahan<br>dari Panitia / Pengawas
+    Silahkan input Token Soal sesuai arahan<br>dari Panitia/Pengawas
   </div>
 
-  <button class="btn" onclick="verifikasiKode()">CEK TOKEN & MULAI</button>
+  <button class="btn" onclick="verifikasiKode()">CEK TOKEN</button>
 
   <div class="foot">
-    S-Code by : Baso Asril<br>
-    <small>PWA Ready - Bisa di Install</small>
+    S-Code by : ICT SMPN 13 - with Baso Asril
   </div>
 
-  <!-- Modal Error -->
   <div id="errorModal" class="modal">
     <div class="modal-content">
       <h2>Token Tidak Valid!</h2>
-      <p>Token yang Anda masukkan kosong atau tidak terdaftar.</p>
+      <p>Token yang Anda masukkan kosong atau tidak berlaku.</p>
       <button class="close-btn" onclick="closeModal()">TUTUP</button>
     </div>
   </div>
 
   <script>
-    const API_URL = 'https://script.google.com/macros/s/AKfycbxI-ZZZPwXvQm1KNU7YqRR6sUOdhGftcz4kY5rc2rhJKFQ4s2KRUXAJeLZgZrQxYc2F/exec';
+    // URL API 1 (Token) dan API 2 (Logs)
+    const API_URL = 'https://script.google.com/macros/s/AKfycbwr2ImoBNG0nvkhkCx04nWJ6LFgkSVxS2vLaSffIJqZ0gNBtP9ua6MZVj_LFp5dm3WxTA/exec';
+    const API_LOG_URL = 'https://script.google.com/macros/s/AKfycbxPGZU68ypyW7hqOLEKjAbiBHrYFa0Nz4R_zKhm-X8mJ53MDkkVGiegXD3Ak8hfimHm/exec'; // MASUKKAN URL WEB APP LOGS DI SINI
+
     let daftarKode = {};
 
+    // 1. Fungsi Deteksi Device untuk Logging (API 2)
+    async function kirimDataLog(tokenTerpakai) {
+      try {
+        const infoData = {
+          sesi: "Akses Token: " + tokenTerpakai,
+          device: navigator.platform,
+          browser: navigator.userAgent.split(') ')[1] || navigator.userAgent,
+          ip: "Checked via App" 
+        };
+
+        await fetch(API_LOG_URL, {
+          method: 'POST',
+          mode: 'no-cors', // Penting agar tidak terblokir CORS
+          body: JSON.stringify(infoData)
+        });
+      } catch (e) {
+        console.error("Gagal mengirim log:", e);
+      }
+    }
+
+    // Load database token dari Google Apps Script
     async function loadDaftarKode() {
       try {
         const response = await fetch(API_URL + '?t=' + Date.now());
@@ -187,18 +235,27 @@
 
     loadDaftarKode();
 
-    function verifikasiKode() {
+    // Fungsi utama cek token + Integrasi Log
+    async function verifikasiKode() {
       const input = document.getElementById('kodeInput').value.trim().toUpperCase();
+
       if (!input) {
         document.getElementById('errorModal').style.display = 'flex';
         return;
       }
 
       const url = daftarKode[input];
+
       if (url) {
-        document.body.style.transition = 'opacity 0.6s';
+        // KIRIM LOG KE API 2 SEBELUM REDIRECT
+        await kirimDataLog(input);
+
+        // Token benar → redirect dengan fade out halus
+        document.body.style.transition = 'opacity 0.6s ease';
         document.body.style.opacity = '0';
-        setTimeout(() => window.location.href = url, 600);
+        setTimeout(() => {
+          window.location.href = url;
+        }, 600);
       } else {
         document.getElementById('errorModal').style.display = 'flex';
       }
@@ -207,29 +264,16 @@
     function closeModal() {
       document.getElementById('errorModal').style.display = 'none';
       document.getElementById('kodeInput').focus();
+      document.getElementById('kodeInput').select();
     }
 
-    // Enter key support
-    document.getElementById('kodeInput').addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') verifikasiKode();
+    window.addEventListener('click', (e) => {
+      const modal = document.getElementById('errorModal');
+      if (e.target === modal) closeModal();
     });
 
-    // Service Worker Inline (Penting untuk Install)
-    if ('serviceWorker' in navigator) {
-      const swCode = `
-        self.addEventListener('install', () => self.skipWaiting());
-        self.addEventListener('activate', () => self.clients.claim());
-      `;
-      const blob = new Blob([swCode], { type: 'application/javascript' });
-      const swUrl = URL.createObjectURL(blob);
-      navigator.serviceWorker.register(swUrl).catch(console.log);
-    }
-
-    // Install Prompt
-    let deferredPrompt;
-    window.addEventListener('beforeinstallprompt', (e) => {
-      deferredPrompt = e;
-      console.log('%cAplikasi siap di-install', 'color:green;font-weight:bold');
+    document.getElementById('kodeInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') verifikasiKode();
     });
   </script>
 </body>
