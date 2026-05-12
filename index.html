@@ -161,7 +161,7 @@
 <body>
 
   <div id="loading">
-    <div>Loading Token Database...</div>
+    <div>Menghubungkan ke Server...</div>
     <div class="spinner"></div>
   </div>
 
@@ -186,56 +186,69 @@
 
   <div id="errorModal" class="modal">
     <div class="modal-content">
-      <h2>Token Tidak Valid!</h2>
-      <p>Token yang Anda masukkan kosong atau tidak berlaku.</p>
+      <h2>Token Salah!</h2>
+      <p>Token tidak ditemukan atau akses sedang dinonaktifkan.</p>
       <button class="close-btn" onclick="closeModal()">TUTUP</button>
     </div>
   </div>
 
   <script>
-    // URL API 1 (Token) dan API 2 (Logs)
+    // URL API dari Google Apps Script
     const API_URL = 'https://script.google.com/macros/s/AKfycbwr2ImoBNG0nvkhkCx04nWJ6LFgkSVxS2vLaSffIJqZ0gNBtP9ua6MZVj_LFp5dm3WxTA/exec';
-    const API_LOG_URL = 'https://script.google.com/macros/s/AKfycbxPGZU68ypyW7hqOLEKjAbiBHrYFa0Nz4R_zKhm-X8mJ53MDkkVGiegXD3Ak8hfimHm/exec'; // MASUKKAN URL WEB APP LOGS DI SINI
+    const API_LOG_URL = 'https://script.google.com/macros/s/AKfycbxPGZU68ypyW7hqOLEKjAbiBHrYFa0Nz4R_zKhm-X8mJ53MDkkVGiegXD3Ak8hfimHm/exec'; 
 
-    let daftarKode = {};
+    let daftarKode = {}; // Format target: { "TOKEN-SAYA": "URL_GOOGLE_FORM" }
 
-    // 1. Fungsi Deteksi Device untuk Logging (API 2)
+    // 1. Kirim Log Aktivitas (API Jalur 2)
     async function kirimDataLog(tokenTerpakai) {
       try {
         const infoData = {
-          sesi: "Akses Token: " + tokenTerpakai,
+          sesi: tokenTerpakai,
           device: navigator.platform,
-          browser: navigator.userAgent.split(') ')[1] || navigator.userAgent,
-          ip: "Checked via App" 
+          browser: navigator.userAgent.split(') ')[1] || "Mobile Device",
+          ip: "Checked" 
         };
 
         await fetch(API_LOG_URL, {
           method: 'POST',
-          mode: 'no-cors', // Penting agar tidak terblokir CORS
+          mode: 'no-cors', 
           body: JSON.stringify(infoData)
         });
       } catch (e) {
-        console.error("Gagal mengirim log:", e);
+        console.warn("Gagal mengirim log:", e);
       }
     }
 
-    // Load database token dari Google Apps Script
+    // 2. Ambil Data Token dari Server (API Jalur 1)
     async function loadDaftarKode() {
       try {
+        // Tambahkan timestamp (?t=...) agar data tidak terkena cache browser
         const response = await fetch(API_URL + '?t=' + Date.now());
-        daftarKode = await response.json();
+        const dataJSON = await response.json(); 
+        
+        // --- KONVERSI DATA ---
+        // Karena Admin mengirim data list [{token: "A", url: "B"}], 
+        // kita ubah ke format object { "A": "B" } agar mudah dicari.
+        daftarKode = {};
+        dataJSON.forEach(item => {
+          if (item.token && item.url) {
+            daftarKode[item.token.trim().toUpperCase()] = item.url;
+          }
+        });
+
       } catch (err) {
-        console.error(err);
-        alert('Gagal memuat database token. Cek koneksi internet.');
+        console.error("Database Error:", err);
+        alert('Gagal mengambil data dari server. Silahkan refresh halaman.');
       } finally {
         document.getElementById('loading').style.display = 'none';
         document.getElementById('kodeInput').focus();
       }
     }
 
+    // Jalankan pengambilan data saat halaman dibuka
     loadDaftarKode();
 
-    // Fungsi utama cek token + Integrasi Log
+    // 3. Verifikasi Token saat tombol diklik
     async function verifikasiKode() {
       const input = document.getElementById('kodeInput').value.trim().toUpperCase();
 
@@ -244,19 +257,21 @@
         return;
       }
 
-      const url = daftarKode[input];
+      const formUrl = daftarKode[input];
 
-      if (url) {
-        // KIRIM LOG KE API 2 SEBELUM REDIRECT
+      if (formUrl) {
+        // Kirim Log dulu
         await kirimDataLog(input);
 
-        // Token benar → redirect dengan fade out halus
-        document.body.style.transition = 'opacity 0.6s ease';
+        // Efek transisi keluar
+        document.body.style.transition = 'opacity 0.5s ease';
         document.body.style.opacity = '0';
+        
         setTimeout(() => {
-          window.location.href = url;
-        }, 600);
+          window.location.href = formUrl;
+        }, 500);
       } else {
+        // Tampilkan modal jika token tidak ada di daftarKode
         document.getElementById('errorModal').style.display = 'flex';
       }
     }
@@ -264,14 +279,15 @@
     function closeModal() {
       document.getElementById('errorModal').style.display = 'none';
       document.getElementById('kodeInput').focus();
-      document.getElementById('kodeInput').select();
     }
 
+    // Tutup modal jika klik di luar box
     window.addEventListener('click', (e) => {
       const modal = document.getElementById('errorModal');
       if (e.target === modal) closeModal();
     });
 
+    // Support tombol Enter pada keyboard
     document.getElementById('kodeInput').addEventListener('keypress', (e) => {
       if (e.key === 'Enter') verifikasiKode();
     });
